@@ -32,13 +32,7 @@ def get_text():
     return input_text
 
 
-user_input = get_text()
 
-if user_input:
-    output = chain.run(input=user_input)
-
-    st.session_state.past.append(user_input)
-    st.session_state.generated.append(output)
 
 if st.session_state["generated"]:
 
@@ -47,5 +41,10 @@ if st.session_state["generated"]:
         message(st.session_state["past"][i], is_user=True, key=str(i) + "_user")
         message(st.session_state["generated"][i], key=str(i))
 
-# Place the text box below the conversation history
-st.text_input("You: ", "Hello, how are you?", key="input")
+user_input = get_text()
+
+if user_input:
+    output = chain.run(input=user_input)
+
+    st.session_state.past.append(user_input)
+    st.session_state.generated.append(output)
