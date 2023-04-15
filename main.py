@@ -4,11 +4,25 @@ from streamlit_chat import message
 
 from langchain.chains import ConversationChain
 from langchain.llms import OpenAI
+from langchain.chat_models import ChatOpenAI
+from langchain import PromptTemplate, LLMChain
+from langchain.prompts.chat import (
+    ChatPromptTemplate,
+    SystemMessagePromptTemplate,
+    AIMessagePromptTemplate,
+    HumanMessagePromptTemplate,
+)
+from langchain.schema import (
+    AIMessage,
+    HumanMessage,
+    SystemMessage
+)
 
 
 def load_chain():
     """Logic for loading the chain you want to use should go here."""
-    llm = OpenAI(temperature=0,model_name = "gpt-3.5-turbo")
+    #llm = OpenAI(temperature=0,model_name = "gpt-3.5-turbo")
+    llm = ChatOpenAI(temperature=0)
     #model_engine = "gpt-3.5-turbo"
     #llm = GPT(engine=model_engine, max_tokens=1024)
     chain = ConversationChain(llm=llm)
